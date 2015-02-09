@@ -75,6 +75,7 @@ static void Settings_defaultMeters(Header* header, int cpuCount) {
    Header_createMeter(header, "Swap", LEFT_HEADER);
    Header_createMeter(header, "Tasks", RIGHT_HEADER);
    Header_createMeter(header, "LoadAverage", RIGHT_HEADER);
+   Header_createMeter(header, "Sensors", LEFT_HEADER);
    Header_createMeter(header, "Uptime", RIGHT_HEADER);
 }
 

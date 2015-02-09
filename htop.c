@@ -154,11 +154,20 @@ static void showHelp(ProcessList* pl) {
    addattrstr(CRT_colors[SWAP], "used");
    addattrstr(CRT_colors[BAR_SHADOW], "                                          used/total");
    addattrstr(CRT_colors[BAR_BORDER], "]");
+
+   mvaddstr(6, 0, "Sensors bar:      ");
+   addattrstr(CRT_colors[BAR_BORDER], "[");
+   addattrstr(CRT_colors[SENSORS], "used");
+   addattrstr(CRT_colors[BAR_SHADOW], "                                          current/max");
+   addattrstr(CRT_colors[BAR_BORDER], "]");
+
+/*
    attrset(CRT_colors[DEFAULT_COLOR]);
    mvaddstr(6,0, "Type and layout of header meters are configurable in the setup screen.");
    if (CRT_colorScheme == COLORSCHEME_MONOCHROME) {
       mvaddstr(7, 0, "In monochrome, meters are displayed through different chars, in order: |#*@$%&");
    }
+*/
    mvaddstr( 8, 0, " Status: R: running; S: sleeping; T: traced/stopped; Z: zombie; D: disk sleep");
    for (int i = 0; helpLeft[i].info; i++) { mvaddstr(9+i, 9,  helpLeft[i].info); }
    for (int i = 0; helpRight[i].info; i++) { mvaddstr(9+i, 49, helpRight[i].info); }

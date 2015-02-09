@@ -18,11 +18,14 @@ in the source distribution for its full text.
 #include "TasksMeter.h"
 #include "LoadAverageMeter.h"
 #include "UptimeMeter.h"
+#include "SensorsMeter.h"
 #include "ClockMeter.h"
 #include "HostnameMeter.h"
 
 #include <math.h>
 #include <assert.h>
+#include <stdlib.h>
+#include <string.h>
 
 /*{
 #include "Action.h"
@@ -60,6 +63,7 @@ MeterClass* Platform_meterTypes[] = {
    &SwapMeter_class,
    &TasksMeter_class,
    &UptimeMeter_class,
+   &SensorsMeter_class,
    &BatteryMeter_class,
    &HostnameMeter_class,
    &AllCPUsMeter_class,
@@ -80,6 +84,37 @@ int Platform_getUptime() {
       fclose(fd);
    }
    return (int) floor(uptime);
+}
+
+int Platform_getSensors(double *current, double *max) {
+   if ((current == NULL) || (max == NULL))
+      return 1;
+
+   *current = -1;
+   *max = -1;
+   if (getenv("HTOP_SENSORS_BINARY") == NULL)
+      return 1;
+   else {
+      char cmd[1024] = { 0 };
+
+      snprintf(cmd, sizeof(cmd), "HTOP_FORMAT=1 %s 2> /dev/null", getenv("HTOP_SENSORS_BINARY"));
+      FILE *fp = popen(cmd, "r");
+      if (fp != NULL) {
+        char line[16];
+        fgets(line, sizeof(line), fp);
+        fclose(fp);
+
+	int i;
+        for (i = 0; i < strlen(line); i++)
+		if (line[i] == '/') {
+			*current = atof(line);
+			*max = atof(line + i + 1);
+			break;
+		}
+      }
+   }
+
+   return 0;
 }
 
 void Platform_getLoadAverage(double* one, double* five, double* fifteen) {

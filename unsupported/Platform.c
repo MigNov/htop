@@ -14,6 +14,7 @@ in the source distribution for its full text.
 #include "ClockMeter.h"
 #include "HostnameMeter.h"
 #include "UptimeMeter.h"
+#include "SensorsMeter.h"
 
 /*{
 #include "Action.h"
@@ -35,6 +36,7 @@ MeterClass* Platform_meterTypes[] = {
    &BatteryMeter_class,
    &HostnameMeter_class,
    &UptimeMeter_class,
+   &SensorsMeter_class,
    &AllCPUsMeter_class,
    &AllCPUs2Meter_class,
    &LeftCPUsMeter_class,

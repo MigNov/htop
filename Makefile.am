@@ -22,7 +22,8 @@ LoadAverageMeter.c MemoryMeter.c Meter.c MetersPanel.c Object.c Panel.c \
 BatteryMeter.c Process.c ProcessList.c RichString.c ScreenManager.c Settings.c \
 SignalsPanel.c String.c SwapMeter.c TasksMeter.c UptimeMeter.c TraceScreen.c \
 UsersTable.c Vector.c AvailableColumnsPanel.c AffinityPanel.c \
-HostnameMeter.c OpenFilesScreen.c Affinity.c IncSet.c Action.c
+HostnameMeter.c OpenFilesScreen.c Affinity.c IncSet.c Action.c \
+SensorsMeter.c
 
 myhtopheaders = AvailableColumnsPanel.h AvailableMetersPanel.h \
 CategoriesPanel.h CheckItem.h ClockMeter.h ColorsPanel.h ColumnsPanel.h \
@@ -31,7 +32,7 @@ Hashtable.h Header.h htop.h ListItem.h LoadAverageMeter.h MemoryMeter.h \
 BatteryMeter.h Meter.h MetersPanel.h Object.h Panel.h ProcessList.h RichString.h \
 ScreenManager.h Settings.h SignalsPanel.h String.h SwapMeter.h TasksMeter.h \
 UptimeMeter.h TraceScreen.h UsersTable.h Vector.h Process.h AffinityPanel.h \
-HostnameMeter.h OpenFilesScreen.h Affinity.h IncSet.h Action.h
+HostnameMeter.h OpenFilesScreen.h Affinity.h IncSet.h Action.h SensorsMeter.h
 
 if HTOP_LINUX
 myhtopplatsources = linux/Platform.c linux/IOPriorityPanel.c linux/IOPriority.c \
