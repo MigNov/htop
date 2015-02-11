@@ -1,12 +1,23 @@
 #!/bin/bash
 
+if ! which rpmbuild > /dev/null 2>&1; then
+	echo "Please install rpmbuild (try: yum install rpmdevtools)"
+	exit 0
+fi
+
+echo "Creating package ..."
+
 rm -f htop.tgz
 
 sourcedir="$(rpm --eval "%{_sourcedir}")"
+mkdir -p $sourcedir
+
 name="$(cat htop.spec  | grep Name: | awk '{split($0, a, ":"); print a[2]}' | tr -d ' ')"
 ver="$(cat htop.spec  | grep Version: | awk '{split($0, a, ":"); print a[2]}' | tr -d ' ')"
 dir="$name-$ver"
+mkdir -p rpms
 mkdir -p $dir
+./autogen.sh
 cp -af * $dir 2> /dev/null
 tar -zcf htop.tgz $dir
 rm -rf $dir
